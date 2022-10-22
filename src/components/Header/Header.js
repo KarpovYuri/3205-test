@@ -5,7 +5,7 @@ import './Header.css';
 function Header() {
   return (
     <header className='header'>
-      <NavLink to='/' className='header__link hover'>Конвертер валют</NavLink>
+      <NavLink to='/' className='header__link hover' end>Конвертер валют</NavLink>
       <NavLink to='/rates' className='header__link hover'>Текущие курсы</NavLink>
     </header>
   );
