@@ -1,0 +1,95 @@
+.currency {
+  padding: 70px 70px 10px;
+}
+
+.currency__form {
+  display: grid;
+  gap: 20px;
+  justify-content: center;
+}
+
+.currency__description {
+  margin: 6px 0;
+  font-size: 16px;
+  color: var(--main-color);
+  letter-spacing: normal;
+  text-align: center;
+}
+
+.currency__fieldset {
+  height: 72px;
+  position: relative;
+  background-color: var(--search-form-bg-color);
+  border: none;
+  border-radius: 9px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  padding: 0 50px;
+  margin: 0;
+  font-size: 16px;
+}
+
+.currency__input {
+  height: 22px;
+  width: 22px;
+  cursor: pointer;
+}
+
+.currency__label {
+  margin-right: 40px;
+}
+
+.currency__label:last-of-type {
+  margin-right: 0;
+}
+
+.currency__base {
+  text-align: center;
+  font-size: 26px;
+  margin: 28px 0 0;
+  color: var(--main-color);
+  letter-spacing: normal;
+}
+
+@media (max-width: 1024px) {
+  .currency__form {
+    padding: 0 20px 0 19px;
+  }
+}
+
+@media (max-width: 768px) {
+  .currency {
+    padding: 80px 30px 10px;
+  }
+}
+
+@media (max-width: 576px) {
+  .currency {
+    padding: 80px 10px 10px;
+  }
+
+  .currency__description {
+    font-size: 14px;
+  }
+
+  .currency__fieldset {
+    padding: 0 40px;
+    margin: 0;
+    font-size: 14px;
+  }
+
+  .currency__input {
+    height: 20px;
+    width: 20px;
+  }
+
+  .currency__label {
+    margin-right: 30px;
+  }
+
+  .currency__base {
+    font-size: 20px;
+  }
+}
