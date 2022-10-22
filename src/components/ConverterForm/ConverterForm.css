@@ -1,0 +1,169 @@
+.converter {
+  padding: 70px 70px 10px;
+}
+
+.converter__form {
+  height: 72px;
+  position: relative;
+  background-color: var(--search-form-bg-color);
+  border-radius: 9px;
+  display: flex;
+  align-items: center;
+  padding: 0 30px;
+}
+
+.converter__form:focus-within {
+  outline: 2px solid var(--button-second-bg-color);
+}
+
+.converter__find-icon {
+  width: 34px;
+  height: 34px;
+  background-color: var(--main-color);
+  mask-image: url('../../images/convert-icon.svg');
+  mask-repeat: no-repeat;
+  mask-position: center;
+}
+
+.converter__input-wrapper {
+  height: 40px;
+  display: flex;
+  align-items: center;
+  flex-grow: 1;
+  padding-right: 10px;
+}
+
+.converter__input {
+  height: 100%;
+  flex-grow: 1;
+  padding: 0 22px 0 10px;
+  border: none;
+  background: none;
+  outline: none;
+  color: var(--main-color);
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 20px;
+}
+
+.converter__input::placeholder {
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 20px;
+  color: var(--main-color);
+  opacity: 1;
+  transition: opacity 0.25s ease;
+}
+
+.converter__input:focus::placeholder {
+  opacity: 0;
+  transition: opacity 0.25s ease;
+}
+
+.converter__button {
+  width: 80px;
+  height: 34px;
+  background-image: url('../../images/convert-icon.svg');
+  background-size: 22px 22px;
+  background-color: var(--button-second-bg-color);
+  background-repeat: no-repeat;
+  background-position: center center;
+  border-radius: 48px;
+  cursor: pointer;
+}
+
+.converter__button_disabled {
+  opacity: 0.25;
+  cursor: default;
+}
+
+.convert__form-error,
+.convert__form-error:focus-within {
+  outline: 2px solid var(--error-color);
+}
+
+.converter__error {
+  margin-top: 23px;
+  min-height: 23px;
+  font-size: 14px;
+  line-height: 23px;
+  text-align: center;
+  color: var(--error-color);
+  letter-spacing: normal;
+}
+
+.converter__description {
+  margin: 0 0 16px;
+  font-size: 16px;
+  color: var(--main-color);
+  letter-spacing: normal;
+}
+
+.converter__result {
+  text-align: center;
+  font-size: 26px;
+  margin: 28px 0 0;
+  color: var(--main-color);
+  letter-spacing: normal;
+
+}
+
+@media (max-width: 1024px) {
+  .converter__form {
+    padding: 0 20px 0 19px;
+  }
+}
+
+@media (max-width: 768px) {
+  .converter {
+    padding: 80px 30px 10px;
+  }
+
+  .converter__input-wrapper {
+    padding-right: 6px;
+  }
+}
+
+@media (max-width: 576px) {
+  .converter {
+    padding: 80px 10px 10px;
+  }
+
+  .converter__find-icon {
+    display: none;
+  }
+
+  .converter__input {
+    width: 60%;
+    padding: 0 22px 0 0;
+    font-size: 14px;
+  }
+
+  .converter__input::placeholder {
+    font-size: 14px;
+  }
+
+  .converter__form {
+    padding: 0 19px;
+    justify-content: center;
+  }
+
+  .converter__input-wrapper {
+    padding-right: 0;
+    border: none;
+  }
+
+  .converter__error {
+    font-size: 12px;
+  }
+
+  .converter__description {
+    text-align: center;
+    font-size: 14px;
+  }
+
+  .converter__result {
+    font-size: 20px;
+  }
+
+}

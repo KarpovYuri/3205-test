@@ -1,0 +1,14 @@
+.title {
+  margin: 0 auto 60px;
+  font-weight: 400;
+  font-size: 34px;
+  letter-spacing: -0.04em;
+  text-align: center;
+}
+
+@media (max-width: 576px) {
+  .title {
+    font-size: 18px;
+    line-height: 22px;
+  }
+}
