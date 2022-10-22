@@ -1,12 +1,14 @@
-import { useState } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { defineLang } from '../../actions/actionCreator';
 import './BaseCurrencyForm.css';
 
 function BaseCurrencyForm() {
 
-  const [isCurrentCurrency, setIsCurrentCurrency] = useState('USD');
+  const currentLang = useSelector(state => state.defineLang);
+  const dispatch = useDispatch();
 
   function handleCheck(evt) {
-    setIsCurrentCurrency(evt.target.id);
+    dispatch(defineLang({ lang: evt.target.id }));
   };
 
   return (
@@ -21,7 +23,7 @@ function BaseCurrencyForm() {
             id='USD'
             name='currency'
             onChange={handleCheck}
-            checked={(isCurrentCurrency === 'USD') ? true : false}
+            checked={(currentLang.lang === 'USD') ? true : false}
           />
           <label className='currency__label' htmlFor="USD">USD</label>
           <input
@@ -30,7 +32,7 @@ function BaseCurrencyForm() {
             id='RUB'
             name='currency'
             onChange={handleCheck}
-            checked={(isCurrentCurrency === 'RUB') ? true : false}
+            checked={(currentLang.lang === 'RUB') ? true : false}
           />
           <label className='currency__label' htmlFor="RUB">RUB</label>
         </fieldset>
@@ -39,7 +41,7 @@ function BaseCurrencyForm() {
         <div className='currency__fieldset'>1 EUR = 72.20 RUB</div>
       </form>
       <hr className='line line_place_currency'></hr>
-      <p className='currency__base'>Базовая валюта: {isCurrentCurrency}</p>
+      <p className='currency__base'>Базовая валюта: {currentLang.lang}</p>
     </section>
   );
 };
