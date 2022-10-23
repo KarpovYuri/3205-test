@@ -1,6 +1,6 @@
 import { Routes, Route } from 'react-router-dom';
-import { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
+import { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import CurrencyConverter from '../CurrencyConverter/CurrencyConverter';
 import ExchangeRates from '../ExchangeRates/ExchangeRates';
 import ErrorPage from '../ErrorPage/ErrorPage';
@@ -10,6 +10,8 @@ import './App.css';
 
 function App() {
 
+  const [isRender, setIsRender] = useState(false);
+  const isLoad = useSelector(state => state.getRates.rates);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -21,6 +23,12 @@ function App() {
       .catch(error => console.log(error));
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  useEffect(() => {
+    if (JSON.stringify(isLoad) !== '{}') setIsRender(true);
+  }, [isLoad]);
+
+  if (!isRender) return;
 
   return (
     <div className="app">

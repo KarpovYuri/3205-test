@@ -20,7 +20,7 @@ function ConverterForm() {
   function onSubmitSearch(evt) {
     evt.preventDefault();
     if (!isValid) {
-      setIsValidationError('Заполните это поле');
+      setIsValidationError('Поле заполнено не корректно');
       return;
     }
     const array = isInputValue.toLocaleUpperCase().split(' ');
