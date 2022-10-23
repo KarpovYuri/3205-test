@@ -25,7 +25,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 10px;
+  gap: 50px;
   padding: 0 50px;
   margin: 0;
   font-size: 16px;
@@ -33,17 +33,32 @@
 }
 
 .currency__input {
-  height: 22px;
-  width: 22px;
-  cursor: pointer;
+  display: none;
 }
 
 .currency__label {
-  margin-right: 40px;
+  display: flex;
+  align-items: center;
+  position: relative;
 }
 
-.currency__label:last-of-type {
-  margin-right: 0;
+.currency__label:before {
+  content: "";
+  width: 22px;
+  height: 22px;
+  position: relative;
+  background: url(../../images/radio-button-unchecked.svg) 0 0 no-repeat;
+  margin-right: 10px;
+  cursor: pointer;
+  transition: filter .25s;
+}
+
+.currency__input:checked+.currency__label:before {
+  background: url(../../images/radio-button-checked.svg) 0 0 no-repeat;
+}
+
+.currency__label:hover:before {
+  filter: opacity(70%);
 }
 
 .currency__base {
@@ -84,10 +99,6 @@
   .currency__input {
     height: 20px;
     width: 20px;
-  }
-
-  .currency__label {
-    margin-right: 30px;
   }
 
   .currency__base {
