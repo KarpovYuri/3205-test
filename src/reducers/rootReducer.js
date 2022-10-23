@@ -1,6 +1,7 @@
 import { combineReducers } from "redux";
-import defineLang from './defineLang';
+import defineCurrency from './defineCurrency';
+import getRates from './getRates';
 
-const rootReducer = combineReducers({ defineLang });
+const rootReducer = combineReducers({ defineCurrency, getRates });
 
 export default rootReducer;

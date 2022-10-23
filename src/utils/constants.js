@@ -1,1 +1,2 @@
-export const DEFINE_LANG = 'DEFINE_LANG';
+export const DEFINE_CURRENCY = 'DEFINE_CURRENCY';
+export const GET_RATES = 'GET_RATES';

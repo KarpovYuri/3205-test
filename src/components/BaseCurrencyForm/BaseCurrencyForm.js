@@ -4,11 +4,12 @@ import './BaseCurrencyForm.css';
 
 function BaseCurrencyForm() {
 
-  const currentLang = useSelector(state => state.defineLang);
+  const currentCurrency = useSelector(state => state.defineCurrency.currency);
+  const exchangeRates = useSelector(state => state.getRates.rates);
   const dispatch = useDispatch();
 
   function handleCheck(evt) {
-    dispatch(defineLang({ lang: evt.target.id }));
+    dispatch(defineLang({ currency: evt.target.id }));
   };
 
   return (
@@ -23,7 +24,7 @@ function BaseCurrencyForm() {
             id='USD'
             name='currency'
             onChange={handleCheck}
-            checked={(currentLang.lang === 'USD') ? true : false}
+            checked={(currentCurrency === 'USD') ? true : false}
           />
           <label className='currency__label' htmlFor="USD">USD</label>
           <input
@@ -32,16 +33,24 @@ function BaseCurrencyForm() {
             id='RUB'
             name='currency'
             onChange={handleCheck}
-            checked={(currentLang.lang === 'RUB') ? true : false}
+            checked={(currentCurrency === 'RUB') ? true : false}
           />
           <label className='currency__label' htmlFor="RUB">RUB</label>
         </fieldset>
         <p className='currency__description'>Курсы</p>
-        <div className='currency__fieldset'>1 USD = 63.49 RUB</div>
-        <div className='currency__fieldset'>1 EUR = 72.20 RUB</div>
+        <div className='currency__fieldset'>
+          1 {currentCurrency === 'RUB'
+            ? `USD = ${exchangeRates.RUB.toFixed(2)} RUB`
+            : `RUB = ${(exchangeRates.USD / exchangeRates.RUB).toFixed(2)} USD`}
+        </div>
+        <div className='currency__fieldset'>
+          1 EUR = {currentCurrency === 'RUB'
+            ? `${(exchangeRates.RUB / exchangeRates.EUR).toFixed(2)} RUB`
+            : `${(exchangeRates.USD / exchangeRates.EUR).toFixed(2)} USD`}
+        </div>
       </form>
       <hr className='line line_place_currency'></hr>
-      <p className='currency__base'>Базовая валюта: {currentLang.lang}</p>
+      <p className='currency__base'>Базовая валюта: {currentCurrency}</p>
     </section>
   );
 };

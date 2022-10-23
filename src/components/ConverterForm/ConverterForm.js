@@ -1,21 +1,37 @@
 import { useState } from 'react';
+import { useSelector } from 'react-redux';
 import './ConverterForm.css';
 
 function ConverterForm() {
 
-  const [isSearchValue, setIsSearchValue] = useState('');
+  const [isInputValue, setIsInputValue] = useState('');
   const [isValidationError, setIsValidationError] = useState('');
   const [isValid, setIsValid] = useState(false);
+  const [isConversionResult, setIsConversionResult] = useState('');
+
+  const exchangeRates = useSelector(state => state.getRates.rates);
 
   function handleChangeSearch(evt) {
     setIsValidationError(evt.target.validationMessage);
-    setIsSearchValue(evt.target.value);
+    setIsInputValue(evt.target.value);
     setIsValid(evt.target.closest("form").checkValidity());
   };
 
   function onSubmitSearch(evt) {
     evt.preventDefault();
-    if (!isValid) return;
+    if (!isValid) {
+      setIsValidationError('Заполните это поле');
+      return;
+    }
+    const array = isInputValue.toLocaleUpperCase().split(' ');
+    if (exchangeRates[array[1]] === undefined || exchangeRates[array[3]] === undefined) {
+      setIsConversionResult('Валюта не найдена');
+      return;
+    }
+    const result =
+      `${array[0]} ${array[1]} = ${(array[0] * exchangeRates[array[3]] / exchangeRates[array[1]]).toFixed(2)} ${array[3]}`;
+    setIsConversionResult(result);
+    setIsInputValue('');
     setIsValid(false);
   };
 
@@ -34,8 +50,10 @@ function ConverterForm() {
             className='converter__input'
             type='text'
             required
+            pattern='^([0-9]{1,}[\s]{1}[a-z]{3}[\s]{1}[i]{1}[n]{1}[\s]{1}[a-z]{3})?$'
+            autoComplete='off'
             placeholder='100 USD in EUR'
-            value={isSearchValue}
+            value={isInputValue}
             onChange={handleChangeSearch}
           />
           <div
@@ -47,7 +65,7 @@ function ConverterForm() {
       </form>
       <div className='converter__error'>{isValidationError}</div>
       <hr className='line'></hr>
-      <p className='converter__result'>Результат конвертации</p>
+      <p className='converter__result'>{isConversionResult}</p>
     </section>
   );
 };
