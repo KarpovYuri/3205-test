@@ -1,4 +1,4 @@
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, HashRouter } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import CurrencyConverter from '../CurrencyConverter/CurrencyConverter';
@@ -32,11 +32,13 @@ function App() {
 
   return (
     <div className="app">
-      <Routes>
-        <Route exact path='/' element={<CurrencyConverter />} />
-        <Route path='/rates' element={<ExchangeRates />} />
-        <Route path='*' element={<ErrorPage />} />
-      </Routes>
+      <HashRouter>
+        <Routes>
+          <Route path='/' element={<CurrencyConverter />} />
+          <Route path='/rates' element={<ExchangeRates />} />
+          <Route path='*' element={<ErrorPage />} />
+        </Routes>
+      </HashRouter>
     </div>
   );
 }
